@@ -1,62 +1,57 @@
-⚡ What is Cloud Run?
-Cloud Run is a fully managed compute platform that automatically scales your containerized applications.
+⚡ What are Cloud Functions?
+Cloud Functions are lightweight, event-driven compute solutions that let you run code in response to events without managing servers.
 
 💡 Core Idea:
-Deploy containers (e.g., Docker) that can run over HTTP — serverless, scalable, and portable.
+Run backend code automatically in response to events (e.g., file upload, HTTP request, log write, etc.) — fully managed and serverless.
 
-⚡ When to Use Cloud Run?
+⚡ When to Use Cloud Functions?
 
-When you want to run a web app, microservice, or API
+To execute code when something happens (event-driven)
 
-When your app is packaged as a container
-
-When you need custom libraries, runtimes, or binaries
+Example: File upload to Cloud Storage or HTTP request received
 
 ⚡ Key Features:
 
-Fully Managed: No server management
+No Server Management: Auto-scales up/down based on traffic
 
-Any Language/Library: If it runs in a container, it runs on Cloud Run
+Languages Supported: Node.js, Python, Go, Java, .NET, Ruby
 
-Stateless & Scalable: Handles 0 to millions of requests
+Pay-as-you-go: Based on invocations, compute time, memory
 
-Request-based billing: You only pay while your app is handling requests
+Time-bound: Default 1 min, max 60 mins (3600 sec)
 
-Built-in HTTPS support
+2 Versions Available:
 
-📦 What Can You Deploy?
+Gen 1 (original)
 
-Container image (from Docker or Cloud Build)
+Gen 2 (built on top of Cloud Run + Eventarc)
 
-App exposing an HTTP server
+⚙️ Trigger Concepts:
 
-Examples: Flask, Express.js, Java Spring Boot, etc.
+Event: The thing that happens (e.g., object upload)
 
-🚀 Cloud Run Flow:
+Trigger: Defines what function to call when an event occurs
 
-Build container (locally or with Cloud Build)
+Function: Executes the logic when the trigger fires
 
-Push to Container Registry or Artifact Registry
+📌 Events Can Be Triggered From:
 
-Deploy on Cloud Run
+Cloud Storage
 
-App is served via HTTPS endpoint
+Cloud Pub/Sub
 
-🆚 Cloud Run vs Cloud Functions:
+HTTP (GET, POST, PUT, DELETE, OPTIONS)
 
-Feature	Cloud Run	Cloud Functions
-Runtime	Any (via container)	Limited (Node.js, Python, etc.)
-Use Case	Web apps, APIs	Small event-driven code
-Startup	Slightly slower (cold start)	Faster
-Flexibility	High	Limited
+Firebase
 
-🧠 Remember:
+Cloud Firestore
 
-Stateless containers
+Stackdriver Logging
 
-Must listen on PORT env var
+🧠 Important to Remember:
 
-Timeout max: 60 minutes
+Cloud Functions scale horizontally
 
-Can use with Cloud Scheduler, Pub/Sub, etc. for event-driven architecture
+Not ideal for long-running processes
 
+Best used for short, reactive operations
