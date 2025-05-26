@@ -1,0 +1,96 @@
+💾 What is Block Storage?
+Block Storage breaks data into equal-sized blocks, each with a unique identifier. Acts like a virtual hard drive.
+
+🔧 Used For:
+
+Operating system files
+
+Databases
+
+Application data
+
+💡 Typically Attached to One VM
+
+Can be used as DAS (Direct Attached Storage)
+
+Or part of SAN (Storage Area Network)
+
+🗂️ What is File Storage?
+File Storage organizes data in folders/directories like a traditional file system.
+
+🔧 Used For:
+
+Media editing
+
+Content sharing
+
+Enterprise apps needing file access
+
+💡 Easily Shared Between VMs
+
+🌐 GCP Storage Types
+📦 Block Storage in GCP:
+Persistent Disks (PD)
+
+Zonal (within one zone)
+
+Regional (across two zones)
+
+Detachable, resizable, durable
+
+Local SSDs
+
+Physically attached to VM
+
+Temporary (data lost when VM stops)
+
+High IOPS, low latency
+
+📁 File Storage in GCP:
+Filestore
+
+Managed NFS (Network File System)
+
+High-performance shared file storage
+
+Suitable for shared workloads
+
+🛠️ Block Storage Comparison
+Feature	Persistent Disk (PD)	Local SSD
+Attachment	Network	Direct physical
+Lifecycle	Persistent	Ephemeral
+Performance	Good	10–100x faster
+Detachable?	Yes	No
+Snapshot Support?	Yes	No
+Use Case	Databases, apps	Caching, temp storage
+
+💽 Persistent Disk Types
+Type	Backing	IOPS	Use Case
+Standard	HDD	Low	Sequential workloads
+Balanced	SSD	Good	General-purpose
+SSD	SSD	Very High	High-performance workloads
+
+🌀 Snapshots in PD
+Point-in-time backups
+
+Incremental: Saves only changed data
+
+Used for: Backup, disaster recovery, cloning
+
+Can be automated & cross-project
+
+📝 Best Practices:
+
+Don’t snapshot too frequently (not >1/hour)
+
+Avoid during peak I/O
+
+Delete unused snapshots regularly
+
+📷 Machine Images
+Full VM backup (OS + metadata + disk)
+
+Includes: Instance settings, boot disk, additional disks
+
+Can recreate entire VM setup
+
