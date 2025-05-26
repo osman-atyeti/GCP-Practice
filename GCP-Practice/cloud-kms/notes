@@ -1,0 +1,50 @@
+🔄 Data States
+Data at Rest: Stored (e.g., disk, DB, backups)
+
+Data in Motion: Being transferred (e.g., app to cloud, within cloud)
+
+Data in Use: Being actively processed in memory
+
+🔐 Encryption Basics
+Why Encrypt? Prevent unauthorized data access (e.g., lost hard disk)
+
+Defense in Depth: Encrypt hard disks, databases, file servers
+
+Encrypt both: Data at rest and in transit
+
+🔐 Symmetric Key Encryption
+Same key used for encryption and decryption
+
+🔑 Key Factors:
+
+Right encryption algorithm
+
+Securing the key
+
+Sharing the key
+
+🔐 Asymmetric Key Encryption
+Uses Public Key + Private Key
+
+Encrypt with Public, Decrypt with Private
+
+Public = shared; Private = secret
+
+Also called Public Key Cryptography
+
+☁️ Cloud KMS (Key Management Service)
+Manages cryptographic keys (symmetric + asymmetric)
+
+Controls key usage in apps + GCP services
+
+Provides API for encrypt/decrypt/sign
+
+Integrates with most GCP services
+
+Key types:
+
+Google-managed (auto)
+
+Customer-managed (via KMS)
+
+Customer-supplied (your own)
