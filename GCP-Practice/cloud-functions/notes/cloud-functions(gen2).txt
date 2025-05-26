@@ -1,0 +1,48 @@
+⚡ Cloud Functions - Second Generation (Gen 2)
+🆕 What's New in Gen 2?
+Built on: Cloud Run + Eventarc
+
+Longer Timeouts: Up to 60 minutes for HTTP-triggered functions
+
+Bigger Instances: Up to 16GB RAM, 4 vCPU
+
+High Concurrency: Up to 1000 concurrent requests per instance
+
+Traffic Splitting + Multiple Revisions (not supported in Gen 1)
+
+Supports 90+ Event Types
+
+✅ Recommended over Gen 1
+
+⚙️ Cloud Functions - Scaling & Concurrency
+Typical Serverless Architecture:
+Autoscaling: Spins up new instances for new invocations
+
+Gen 1 Limitation: Only 1 request per instance
+
+Result: 3 concurrent requests → 3 instances
+
+❄️ Cold Start Problem:
+Each new instance may have a cold start (slow start-up time)
+
+🆚 Gen 1 vs Gen 2:
+Feature	Gen 1	Gen 2
+Concurrency	1 request	Up to 1000
+Traffic splitting	❌ Not supported	✅ Supported
+Multiple revisions	❌	✅
+
+⚠️ Ensure thread-safety in your code for concurrent execution in Gen 2.
+
+gcloud functions deploy [NAME]
+🛠️ Key Flags:
+--gen2: Use 2nd gen (default is gen1)
+
+--runtime: e.g., nodejs, python, java
+
+--region: Function deployment region
+
+--service-account: Custom service account
+
+--min-instances / --max-instances: Scale limits
+
+--docker-repository: For container-based deployment
