@@ -1,0 +1,101 @@
+☁️ Cloud Storage - Overview
+Popular, flexible, inexpensive object storage
+
+Serverless: Auto-scaling and infinite scale
+
+Key-Value Approach: Entire object is retrieved (partial not supported)
+
+REST API + CLI + Client Libraries support
+
+Stores all file types: media, logs, backups, archives
+
+Backup, staging, and migration uses
+
+Also called Object Storage
+
+🗂️ Objects & Buckets
+Data stored in buckets
+
+Globally unique bucket names (3–63 characters, lowercase only)
+
+Cannot start with "goog" or contain "google"
+
+Unlimited objects per bucket
+
+Each object = uniquely identified by a key
+
+Max object size: 5 TB
+
+Unlimited number of objects
+
+🧱 Storage Classes – Introduction
+Used to store different types of data:
+
+Media, logs, archives, backups
+
+Helps optimize cost vs access frequency
+
+📊 Storage Classes – Comparison
+Class	Min Storage	Use Case
+Standard	None	Frequent access, short term
+Nearline	30 days	Read once/month or less
+Coldline	90 days	Read once/quarter
+Archive	365 days	Read once/year
+
+✨ Common Features Across Storage Classes
+High durability: 99.999999999%
+
+Low latency: Millisecond-level
+
+Unlimited storage (No min object size)
+
+Autoscaling
+
+Same API for all classes
+
+SLA:
+
+99.95% for multi-region (Standard, Nearline, Coldline)
+
+99.9% for single region
+
+No SLA for Archive
+
+⬆️⬇️ Uploading & Downloading Objects
+Upload Option	Best Use
+Simple Upload	Small files, no metadata
+Multipart Upload	Small files with metadata
+Resumable Upload	Large files (RECOMMENDED)
+Streaming Upload	Stream-based sources
+Parallel Composite	Large files split into chunks (fast)
+Simple Download	Direct to destination
+Streamed Download	Stream to process
+Sliced Object Download	Download large objects in chunks
+
+🕐 Object Versioning
+Enables version history (bucket-level setting)
+
+Allows recovery from accidental deletions
+
+Older versions = object key + generation number
+
+Reduce storage cost by deleting older versions
+
+🔁 Object Lifecycle Management
+Auto transition or deletion based on rules
+
+Conditions:
+
+Age, CreatedBefore, IsLive, Storage Class match
+
+Actions:
+
+SetStorageClass
+
+Delete
+
+Transitions allowed:
+
+(Standard → Nearline/Coldline/Archive)
+
+(Nearline → Coldline/Archive)
