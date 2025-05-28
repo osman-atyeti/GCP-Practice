@@ -1,0 +1,119 @@
+🔐 Cloud Identity and Access Management (IAM)
+Resources in the cloud need access control (e.g., VMs, storage).
+
+Identities (human or non-human) access these resources.
+
+IAM = Authentication (Who?) + Authorization (What can they do?)
+
+Identities:
+
+GCP User / Group
+
+App in GCP or on-prem
+
+Unauthenticated users
+
+🧑‍🤝‍🧑 IAM Key Concepts
+Member: Who?
+
+Role: What permissions?
+
+Policy: Assigns roles to members
+
+Role ≠ Direct permission → Permissions are bundled in roles.
+
+Granular Control: Can limit access by IP, time, etc.
+
+🔐 Roles in IAM
+Basic Roles: Owner, Editor, Viewer (Not recommended)
+
+Predefined Roles: Managed by Google (e.g., roles/storage.admin)
+
+Custom Roles: Create your own when needed
+
+📄 IAM Policy
+Policy contains bindings: role → members
+
+Members identified by prefix (user:, serviceAccount:, etc.)
+
+Example:
+
+json
+Copy
+Edit
+{
+  "role": "roles/storage.objectViewer",
+  "members": ["user:xyz@example.com"],
+  "condition": {
+    "title": "Limited access",
+    "expression": "request.time < timestamp('2022-02-01T00:00:00.000Z')"
+  }
+}
+💻 gcloud IAM Commands
+View current project: gcloud config list
+
+Add policy: gcloud projects add-iam-policy-binding
+
+View roles: gcloud iam roles list
+
+Create custom roles: gcloud iam roles create
+
+Test policy: gcloud projects get-iam-policy
+
+🤖 Service Accounts
+Used by apps/VMs for programmatic access
+
+No password, uses private/public key pair
+
+Types:
+
+Default (created automatically, has Editor role — not safe)
+
+User Managed (recommended)
+
+Key rotation handled by Google (if managed)
+
+☁️ Use Cases
+1. VM <--> Cloud Storage
+Assign role to Service Account
+
+Bind to VM instance
+
+Key handling is automatic (Google-managed)
+
+2. On-Prem <--> Cloud Storage
+Service account + User-managed key
+
+Set GOOGLE_APPLICATION_CREDENTIALS
+
+Use Google Client Libraries
+
+🔐 Access Control in Cloud Storage
+Uniform (Recommended): One level for all objects in bucket (via IAM)
+
+Fine-grained: Use ACLs for object-level control (less recommended)
+
+🔑 Signed URLs
+Give temporary access without needing a Google account
+
+Useful for sharing limited-time downloads
+
+Steps:
+
+Create key for Service Account
+
+Run:
+
+bash
+Copy
+Edit
+gsutil signurl -d 10m YOUR_KEY.json gs://BUCKET/OBJECT
+🌐 Static Website Hosting (Cloud Storage)
+Bucket name must match website domain
+
+Upload index.html, error.html
+
+Grant Storage Object Viewer to allUsers
+
+Enable Public Access
+
