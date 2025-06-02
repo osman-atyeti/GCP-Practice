@@ -1,0 +1,65 @@
+⚡ What is GCP Dataproc?
+Dataproc is a fully managed Spark and Hadoop service on Google Cloud. It’s used to process big data using open-source tools like Apache Spark, Hadoop, Hive, Pig.
+
+💡 Core Idea:
+Run large-scale data processing jobs (ETL, batch, ML) using open-source big data tools — without managing infrastructure.
+
+⚡ When to Use Dataproc?
+
+Big data processing (batch or streaming)
+
+Need to use Hadoop, Spark, Hive, or Pig
+
+Migrate existing on-prem Hadoop workloads
+
+Want full control over the cluster + flexibility
+
+⚙️ Key Features:
+
+Fully Managed: No need to manage Hadoop/Spark manually
+
+Quick Cluster Spin-Up: In 90 seconds or less
+
+Integrated with GCP: Cloud Storage, BigQuery, Cloud Logging
+
+Customizability: Add init actions, custom images
+
+Autoscaling + Preemptible VMs support
+
+Per-second billing
+
+🧱 Dataproc Architecture:
+
+Cluster (Master + Workers)
+
+Jobs (Spark, PySpark, Hadoop, etc.)
+
+Data in Cloud Storage / BigQuery
+
+🔁 Job Flow Example:
+
+Upload data to Cloud Storage
+
+Create Dataproc Cluster
+
+Submit job (e.g., PySpark script)
+
+Processed results saved to Cloud Storage or BigQuery
+
+Delete cluster (optional)
+
+🆚 Dataproc vs Dataflow vs BigQuery:
+
+Tool	Use Case	Type	Complexity
+Dataproc	Hadoop/Spark-based processing	Open-source	More control
+Dataflow	Stream/batch pipelines	Serverless	Less management
+BigQuery	SQL-based analytics	Serverless	Simplest
+
+🧠 Remember:
+
+Use Cloud Storage as default file system
+
+Can submit on-demand jobs without persistent clusters (via serverless Dataproc Serverless)
+
+Useful for data engineers familiar with Spark or Hadoop
+
