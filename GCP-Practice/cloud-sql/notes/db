@@ -1,0 +1,193 @@
+📘 Databases Primer
+Databases store data in an organized and persistent manner.
+
+Choosing the right database type depends on:
+
+Availability
+
+Durability
+
+RTT, RPO
+
+Consistency
+
+Transactions
+
+Start with understanding each term simply.
+
+🚀 Getting Started
+A database in a single data center has risks:
+
+If the center crashes, DB is unavailable.
+
+Data can be lost if the DB crashes.
+
+📸 Snapshots
+Hourly snapshots to a second data center:
+
+Solves partial data loss (can restore from snapshot).
+
+Still risks downtime and performance issues during snapshot.
+
+🔄 Transaction Logs
+Store transaction logs and copy them to second data center.
+
+✅ Fixes data loss (replay logs after snapshot).
+
+❌ Still causes downtime.
+
+❌ Snapshots can still slow down the system.
+
+🛑 Add a Standby
+Add a standby DB in another data center with replication:
+
+✅ Downtime solved: switch to standby.
+
+✅ Data loss solved: use synced replica.
+
+✅ Performance stable: take snapshots from standby.
+
+🛡️ Availability & Durability
+Availability: Can the app access data when needed?
+
+Durability: Will data survive over time?
+
+4 9’s = 99.99% uptime
+
+11 9’s = Very high durability (e.g. 1 file loss in 10 million files)
+
+🔒 Durability Continued
+Losing data = permanent loss.
+
+Aim for high durability: multiple replicas and backups.
+
+🔁 Increasing Availability & Durability
+Availability: Multiple standbys or distribute across zones/regions.
+
+Durability: Use:
+
+Standbys
+
+Snapshots
+
+Transaction Logs
+
+Replication challenges exist but are necessary.
+
+⏱️ RTO and RPO
+RPO (Recovery Point Objective): Max acceptable data loss.
+
+RTO (Recovery Time Objective): Max acceptable downtime.
+
+Balance RTO/RPO based on:
+
+Data criticality
+
+Cost vs. resilience
+
+🌐 Reporting and Analytics Applications
+New reporting apps cause load on the main database (read-only).
+
+Performance drops over time due to shared usage.
+
+Solutions:
+
+Vertically scale database (add CPU, memory).
+
+Create a database cluster (expensive but scalable).
+
+Create read replicas for reporting apps.
+
+📚 Read Replicas
+Offload read queries from the main database.
+
+Reporting and analytics apps use replicas.
+
+Reduces master DB load.
+
+Can promote replicas to master (supported DBs).
+
+Replicas can exist in multiple regions.
+
+Snapshots can be created from replicas.
+
+🔁 Consistency
+Strong consistency: Data is updated across all replicas immediately (slower).
+
+Eventual consistency: Updates propagate with delay (used in social media, etc.).
+
+Read-after-write consistency: New data is readable instantly, updates eventually sync.
+
+🗃️ Database Categories
+Types: Relational (OLTP, OLAP), Document, Key-Value, Graph, In-Memory.
+
+Choosing a DB depends on:
+
+Schema needs (fixed vs flexible).
+
+Transaction properties (atomicity, consistency).
+
+Latency (seconds/ms/µs).
+
+Volume (MB to PB).
+
+Transaction rate (hundreds to millions/sec).
+
+🔗 Relational Databases
+Previously the only DB option.
+
+Schema-based with tables and relationships.
+
+Strong transactional support.
+
+Used in OLTP (e.g., ERP, banking) and OLAP (analytics).
+
+💳 OLTP (Online Transaction Processing)
+Handles many small, fast transactions.
+
+Use cases: E-commerce, banking, ERP systems.
+
+GCP services: Cloud SQL (PostgreSQL, MySQL), Cloud Spanner (scalable, global).
+
+📊 OLAP (Online Analytical Processing)
+Analyzes petabytes of data from transactional systems.
+
+Used for reporting, BI, data warehousing.
+
+GCP service: BigQuery (distributed, petabyte-scale).
+
+🔄 OLTP vs OLAP
+OLTP uses row-based storage – great for frequent small transactions.
+
+OLAP uses column-based storage – optimized for analytical queries.
+
+OLAP compresses and distributes data across nodes.
+
+OLTP is better for inserts/updates; OLAP is better for reads and analytics.
+
+📂 NoSQL Databases
+Schema flexibility, horizontal scaling, high performance.
+
+Ideal for mobile/web apps and large-scale systems.
+
+GCP services:
+
+Firestore/Datastore: Document DB with ACID transactions (serverless).
+
+BigTable: Columnar DB for large workloads (not serverless).
+
+⚡ In-Memory Databases
+Faster than disk-based databases.
+
+Redis-like databases store data in memory.
+
+Ideal for session storage, caching, gaming, leaderboards.
+
+GCP service: MemoryStore.
+
+📌 Summary
+Type	                 GCP Services	            Key Use Cases
+Relational OLTP     	Cloud SQL, Spanner	        Transactions, ERP, CRM, banking
+Relational OLAP	           BigQuery	                Analytics, data warehousing
+NoSQL	                Firestore, BigTable	        Scalable web/mobile apps
+In-memory	            MemoryStore	                Microsecond access, caching, sessions
